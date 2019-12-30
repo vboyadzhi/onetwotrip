@@ -1,0 +1,44 @@
+# Here you can define all your data sets by using simple YAML syntax.
+#
+# Documentation for this file format can be found in the kedro docs under `Accessing data`
+# You can access the kedro docs by running `kedro docs`
+
+submission:
+  type: CSVLocalDataSet
+  filepath: data/01_raw/onetwotrip_challenge_sub1.csv
+train:
+  type: CSVLocalDataSet
+  filepath: data/01_raw/onetwotrip_challenge_train.csv
+test:
+  type: CSVLocalDataSet
+  filepath: data/01_raw/onetwotrip_challenge_test.csv
+
+df_union:
+  type: PickleLocalDataSet
+  filepath: data/02_intermediate/df_union.pkl
+
+df_mean_byuser:
+  type: PickleLocalDataSet
+  filepath: data/02_intermediate/df_mean_byuser.pkl
+
+df_train:
+  type: PickleLocalDataSet
+  filepath: data/03_primary/df_train.pkl
+df_test:
+  type: PickleLocalDataSet
+  filepath: data/03_primary/df_test.pkl
+
+
+cv_models:
+  type: PickleLocalDataSet
+  filepath: data/06_models/cv_models.pkl
+cv_results:
+  type: kedro.io.JSONLocalDataSet
+  filepath: data/08_reporting/cv_result.json
+
+submit1:
+  type: CSVLocalDataSet
+  filepath: data/07_model_output/submit1.csv
+submit2:
+  type: CSVLocalDataSet
+  filepath: data/07_model_output/submit2.csv
