@@ -1,66 +1,44 @@
-# One Two Trip
+# One Two Trip Challenge
 
-## Overview
+Ссылка на соревнование:
+[https://boosters.pro/championship/onetwotrip_challenge](https://boosters.pro/championship/onetwotrip_challenge)
 
-This is your new Kedro project, which was generated using `Kedro 0.15.5` by running:
+- по первой задаче 55 место (на 30.12.2019) 0.6768650
+- по второй задаче 24 место (на 30.12.2019) 0.7368750
 
-```
-kedro new
-```
+Проект создан при помощи `Kedro 0.15.5` 
 
-Take a look at the [documentation](https://kedro.readthedocs.io) to get started.
+Документация [https://kedro.readthedocs.io](https://kedro.readthedocs.io)
 
-## Rules and guidelines
+## Воспроизвести решение
 
-In order to get the best out of the template:
- * Please don't remove any lines from the `.gitignore` file provided
- * Make sure your results can be reproduced by following a data engineering convention, e.g. the one we suggest [here](https://kedro.readthedocs.io/en/latest/06_resources/01_faq.html#what-is-data-engineering-convention)
- * Don't commit any data to your repository
- * Don't commit any credentials or local configuration to your repository
- * Keep all credentials or local configuration in `conf/local/`
+### Установка зависимостей
+Скачать данные соревнования
+- `onetwotrip_challenge_sub1.csv`
+- `onetwotrip_challenge_train.csv`
+- `onetwotrip_challenge_test.csv`
 
-## Installing dependencies
+и положить в папку `data/01_raw`
 
-Dependencies should be declared in `src/requirements.txt` for pip installation and `src/environment.yml` for conda installation.
-
-To install them, run:
-
-```
-kedro install
+Из корня проекта исполнить:
+```bash
+python -m pip install kedro==0.15.5 #установка kedro 0.15.5
+kedro install #установка библиотек из src/requirements.txt
 ```
 
-## Running Kedro
+### Запуск пайплайна Kedro
 
-You can run your Kedro project with:
-
-```
+```bash
 kedro run
 ```
 
-## Testing Kedro
+### Cсылки
 
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests with the following command:
+- Пайплайн [src/one_two_trip/pipeline.py](src/one_two_trip/pipeline.py)
+- Ноды (исполняемые Python функции в Пайплайне) [src/one_two_trip/nodes/my_nodes.py](src/one_two_trip/nodes/my_nodes.py)
+- Файлы для Сабмита [data/07_model_output](data/07_model_output)
 
-```
-kedro test
-```
-
-To configure the coverage threshold, please have a look at the file `.coveragerc`.
-
-
-### Working with Kedro from notebooks
-
-In order to use notebooks in your Kedro project, you need to install Jupyter:
-
-```
-pip install jupyter
-```
-
-For using Jupyter Lab, you need to install it:
-
-```
-pip install jupyterlab
-```
+## Working with Kedro from notebooks
 
 After installing Jupyter, you can start a local notebook server:
 
@@ -68,37 +46,7 @@ After installing Jupyter, you can start a local notebook server:
 kedro jupyter notebook
 ```
 
-You can also start Jupyter Lab:
-
-```
-kedro jupyter lab
-```
-
-And if you want to run an IPython session:
-
-```
-kedro ipython
-```
-
-Running Jupyter or IPython this way provides the following variables in
-scope: `proj_dir`, `proj_name`, `conf`, `io`, `parameters` and `startup_error`.
-
-#### Converting notebook cells to nodes in a Kedro project
-
-Once you are happy with a notebook, you may want to move your code over into the Kedro project structure for the next stage in your development. This is done through a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#cell-tags) and Kedro CLI commands.
-
-By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`.
-```
-kedro jupyter convert <filepath_to_my_notebook>
-```
-> *Note:* The name of the Python file matches the name of the original notebook.
-
-Alternatively, you may want to transform all your notebooks in one go. To this end, you can run the following command to convert all notebook files found in the project root directory and under any of its sub-folders.
-```
-kedro jupyter convert --all
-```
-
-#### Ignoring notebook output cells in `git`
+## Ignoring notebook output cells in `git`
 
 In order to automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
 
